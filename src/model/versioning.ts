@@ -3,6 +3,7 @@ import NotImplementedException from './error/not-implemented-exception';
 import ValidationError from './error/validation-error';
 import Input from './input';
 import System from './system';
+import UnityVersioning from './unity-versioning';
 
 export default class Versioning {
   static get projectPath() {
@@ -128,7 +129,9 @@ export default class Versioning {
     }
 
     if (!(await this.hasAnyVersionTags())) {
-      const version = `0.0.${await this.getTotalNumberOfCommits()}`;
+      const unityVersion = UnityVersioning.determineUnityVersion(Input.projectPath, Input.unityVersion);
+      core.info(`unityVersion ${unityVersion} (no version tags found).`);
+      const version = `${unityVersion}.${await this.getTotalNumberOfCommits()}`;
       core.info(`Generated version ${version} (no version tags found).`);
       return version;
     }

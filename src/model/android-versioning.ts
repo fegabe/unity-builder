@@ -10,6 +10,12 @@ export default class AndroidVersioning {
   }
 
   static versionToVersionCode(version) {
+    console.log('version! ' + version + ', eq? ' + (version === 'none'))
+    if (version === 'none') {
+      core.info(`Versioning strategy is set to ${version}, so android version code should not be applied.`);
+      return 0;
+    }
+
     const parsedVersion = semver.parse(version);
 
     if (!parsedVersion) {

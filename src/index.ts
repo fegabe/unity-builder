@@ -25,7 +25,7 @@ async function run() {
 
       // default and local case
       default:
-        core.info('Building locally');
+        core.info('run - fegabe - Building locally');
         builtImage = await Docker.build({ path: actionFolder, dockerfile, baseImage });
         await Docker.run(builtImage, { workspace, ...buildParameters });
         break;

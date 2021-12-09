@@ -129,9 +129,9 @@ export default class Versioning {
     }
 
     if (!(await this.hasAnyVersionTags())) {
-      const unityVersion = UnityVersioning.determineUnityVersion(Input.projectPath, Input.unityVersion);
-      core.info(`unityVersion ${unityVersion} (no version tags found).`);
-      const version = `${unityVersion}.${await this.getTotalNumberOfCommits()}`;
+      const projectVersion = UnityVersioning.determineProjectVersion(Input.projectPath, Input.specifiedVersion);
+      core.info(`projectVersion ${projectVersion}.`);
+      const version = `${projectVersion}.${await this.getTotalNumberOfCommits()}`;
       core.info(`versioning.ts - Generated version ${version} (no version tags found).`);
       return version;
     }

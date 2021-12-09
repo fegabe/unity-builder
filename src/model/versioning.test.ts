@@ -270,10 +270,10 @@ describe('Versioning', () => {
       await expect(Versioning.generateSemanticVersion()).rejects.toThrowError();
     });
 
-    it('falls back to commits only, when no tags are present', async () => {
+    it('falls back to project version, when no tags are present', async () => {
       const commits = Math.round(Math.random() * 10);
       jest.spyOn(System, 'run').mockImplementation();
-      jest.spyOn(core, 'info').mockImplementation(() => {});
+      jest.spyOn(core, 'info').mockImplementation(() => { });
       jest.spyOn(Versioning, 'isDirty').mockResolvedValue(false);
       jest.spyOn(Versioning, 'hasAnyVersionTags').mockResolvedValue(false);
       jest.spyOn(Versioning, 'getTotalNumberOfCommits').mockResolvedValue(commits);

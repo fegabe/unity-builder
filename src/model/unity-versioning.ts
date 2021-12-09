@@ -18,7 +18,7 @@ export default class UnityVersioning {
   }
 
   static determineProjectVersion(projectPath, projectVersion) {
-    if (projectVersion === 'auto') {
+    if (projectVersion === '') {
       const pattern = UnityVersioning.projectVersionPattern;
       return UnityVersioning.readProjectVersion(projectPath, pattern);
     }
